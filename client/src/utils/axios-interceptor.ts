@@ -1,6 +1,6 @@
 import { getAuth } from "./auth-helper";
-
 export function setupAxios(axios: any) {
+    axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
     axios.defaults.headers.Accept = "application/json";
     axios.interceptors.request.use(
       (config: { headers: { Authorization: string } }) => {

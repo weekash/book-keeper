@@ -1,6 +1,7 @@
 import dotenv from "dotenv"
 dotenv.config()
 import express from "express"
+import cors from "cors"
 import rootRouter from "./routes"
 import errorHandler from "./middlewares/errorHandler"
 import { publicMiddleware } from "./middlewares/publicMiddleware"
@@ -13,10 +14,14 @@ declare global {
     }
   }
 }
+app.use(cors({
+  origin:process.env.CORS_ORIGIN
+}))
 app.use(express.json())
 app.use(publicMiddleware)
 app.use('/api',rootRouter)
 app.use(errorHandler)
 
-const PORT:string|number = process.env.PORT || 6000
+
+const PORT:string|number = process.env.SERVER_PORT || 6000
 app.listen(PORT,()=>console.log(`SERVER RUNNING ON PORT ${[PORT]}`))

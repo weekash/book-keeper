@@ -8,9 +8,4 @@ const env = loadEnv(
 
 export default defineConfig({
   plugins: [react()],
-  server: {
-    proxy:{
-      "^/api/*":env.VITE_API_BASE_URL
-    }
-  },
 })
