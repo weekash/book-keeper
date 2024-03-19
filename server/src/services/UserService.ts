@@ -36,7 +36,8 @@ class UserService {
         return createJWT({
             userId: user.userId,
             email: user.email,
-            image: user.image
+            image: user.image,
+            name: user.name
         })
     }else{
         throw new CustomError("Invalid Credentials", 401)

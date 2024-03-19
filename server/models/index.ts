@@ -33,6 +33,8 @@ export default class DB {
         this.Book.hasMany(this.Review, {foreignKey:"bookId"})
         this.Book.belongsToMany(this.User, { through: 'book_authors', foreignKey:"bookId" });
         this.User.belongsToMany(this.Book, { through: 'book_authors', foreignKey:"userId" });
+        this.Review.belongsTo(this.User, {foreignKey: "userId"})
+        this.User.hasMany(this.Review, {foreignKey: "userId"})
     }
 
     static getInstance(): DB {

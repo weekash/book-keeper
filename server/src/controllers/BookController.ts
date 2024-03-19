@@ -18,7 +18,7 @@ class BookController {
     static getBookDetailsById = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const bookId = req.params.bookId
-            const userId = req.query?.userId as string | undefined
+            const userId = req.context?.user?.userId as string | undefined
             const data = await BookService.getBookById(bookId, userId)
             return res.status(200).send(data)
         } catch (err) {

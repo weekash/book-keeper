@@ -15,14 +15,20 @@ class ReviewRepository {
     }
 
     static getAllReviews = async (bookId: string, options: DatabasePaginateOptions) => {
-        const { limit, offset } = options
-        return await db.Review.findAll({
+        const rows =  await db.Review.findAll({
             where: {
                 bookId,
             },
-            limit,
-            offset
+            include:[{
+                model: db.User,
+                attributes:{
+                    exclude:["password","createdAt","updatedAt","deletedAt"]
+                }
+            }],
+            order:[['updatedAt','desc'],['createdAt','desc']]
         })
+
+        return rows
     }
 
     static createReview = async(data:AddReviewOptions)=>{

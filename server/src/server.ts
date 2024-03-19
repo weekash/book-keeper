@@ -3,6 +3,7 @@ dotenv.config()
 import express from "express"
 import rootRouter from "./routes"
 import errorHandler from "./middlewares/errorHandler"
+import { publicMiddleware } from "./middlewares/publicMiddleware"
 
 const app = express()
 declare global {
@@ -13,7 +14,8 @@ declare global {
   }
 }
 app.use(express.json())
-app.use(rootRouter)
+app.use(publicMiddleware)
+app.use('/api',rootRouter)
 app.use(errorHandler)
 
 const PORT:string|number = process.env.PORT || 6000
