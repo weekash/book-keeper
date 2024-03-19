@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect, ReactNode, useContext, Dispatch, SetStateAction } from 'react';
-import axios from 'axios';
 import { getAuth, removeAuth, setAuth } from '../utils/auth-helper';
 import { Alert, Snackbar } from '@mui/material';
 import { AlertItem } from '../interface/base.type';

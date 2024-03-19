@@ -34,7 +34,7 @@ export interface Review {
     updatedAt: string;
     user: User;
 }
-export interface BookDetails extends BookItem {
+export interface BookDetailsType extends BookItem {
     users: Array<User>;
     userReview: Review | null
 }

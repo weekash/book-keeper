@@ -7,14 +7,14 @@ import { Button, Rating } from '@mui/material';
 import { getBookById } from '../services/book';
 import { useStore } from '../context/Context';
 import { UserListItem } from '../components/UserListItem';
-import { BookDetails } from '../interface/base.type';
+import { BookDetailsType } from '../interface/base.type';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 import AddReviewModal from '../components/AddReviewModal';
 import ReviewContainer from '../containers/ReviewContainer';
 
 
 const BookDetails: React.FC = () => {
-    const [data, setData] = useState<BookDetails | null>(null)
+    const [data, setData] = useState<BookDetailsType | null>(null)
     const { bookId } = useParams<{ bookId: string }>();
     const [modalOpen, setModalOpen] = useState(false)
     const { isAuthenticated } = useStore()

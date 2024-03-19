@@ -4,14 +4,14 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { addReviewForBook, updateReviewForBook } from '../services/review';
 import { useStore } from '../context/Context';
 import { useParams } from 'react-router-dom';
-import { BookDetails, Review } from '../interface/base.type';
+import { BookDetailsType, Review } from '../interface/base.type';
 
 interface ModalProps {
   open: boolean;
   handleClose: () => void;
   userReview: Review | null;
   setReviewKey: Dispatch<SetStateAction<number>>
-  setData: Dispatch<SetStateAction<BookDetails | null>>
+  setData: Dispatch<SetStateAction<BookDetailsType | null>>
 }
 const AddReviewModal = (props: ModalProps) => {
   const { open, handleClose, userReview, setReviewKey, setData } = props
