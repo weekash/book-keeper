@@ -23,5 +23,5 @@ app.use('/api',rootRouter)
 app.use(errorHandler)
 
 
-const PORT:string|number = process.env.SERVER_PORT || 6000
+const PORT:number = parseInt(process.env.PORT || "6000")
 app.listen(PORT,()=>console.log(`SERVER RUNNING ON PORT ${[PORT]}`))
