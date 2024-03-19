@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const BookCard = ({data:{ image, bookId, name, description, rating }}:any) => {
   return (
-    <Card component={Link} to={`/books/${bookId}`} raised sx={{ display: 'flex', height:'100%',maxHeight:250 }}>
+    <Card component={Link} to={`/books/${bookId}`} sx={{ textDecoration:"none", display: 'flex', height:'100%',maxHeight:250 }}>
       <CardMedia
         component="img"
         image={image}

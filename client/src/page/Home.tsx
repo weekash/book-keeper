@@ -12,7 +12,6 @@ export default function Home() {
         <Typography color={"GrayText"} align="center" variant="body1" component="p">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi rerum deleniti eligendi commodi ducimus, totam reprehenderit eveniet saepe quis accusantium eum adipisci architecto obcaecati tempora natus id necessitatibus impedit hic voluptas praesentium modi minus repellat itaque. Nam reprehenderit exercitationem, quidem et temporibus doloribus ipsa consectetur molestias voluptas. Ex, laborum hic?
         </Typography>
-        <h1 style={{color:"white"}}>{import.meta.env.VITE_API_BASE_URL}</h1>
         <ArrowDownward sx={{ marginTop: '3rem' }} />
       </Container>
       <BookContainer />

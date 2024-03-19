@@ -11,14 +11,14 @@ interface ModalProps {
   handleClose: () => void;
   userReview: Review | null;
   setReviewKey: Dispatch<SetStateAction<number>>
-  setData: Dispatch<SetStateAction<BookDetailsType | null>>
 }
 const AddReviewModal = (props: ModalProps) => {
-  const { open, handleClose, userReview, setReviewKey, setData } = props
+  const { open, handleClose, userReview, setReviewKey } = props
   const [rating, setRating] = useState(userReview?.rating ?? 1.5)
   const [review, setReview] = useState(userReview?.review ?? '')
   const { bookId } = useParams<{ bookId: string }>();
   const { addAlert } = useStore()
+  const [loading, setLoading] = useState(false)
   if (!open) {
     return null;
   }
@@ -27,30 +27,32 @@ const AddReviewModal = (props: ModalProps) => {
     if (!bookId) {
       return
     }
+    setLoading(true)
     const { data, success, error } = await addReviewForBook(bookId, rating, review)
     if (success) {
       addAlert('Added review successfully', 'success')
       setReviewKey((val) => val + 1)
-      setData((prev) => { return !prev ? null : { ...prev, userReview: data, rating: +((prev.rating + data.rating) / 2).toFixed(2) } })
       handleClose()
     } else {
       addAlert(error, 'error')
     }
+    setLoading(false)
   }
 
   async function updateReview() {
     if (!bookId || !userReview) {
       return
     }
+    setLoading(true)
     const {success, error } = await updateReviewForBook(userReview.reviewId, bookId, rating, review)
     if (success) {
       addAlert('Updated review successfully', 'success')
       setReviewKey((val) => val + 1)
-      setData((prev) => { return !prev ? null : { ...prev, userReview: { ...(userReview || {}), rating, review }, rating: +((prev.rating + rating) / 2).toFixed(2) } })
       handleClose()
     } else {
       addAlert(error, 'error')
     }
+    setLoading(false)
   }
 
   function submitForm() {
@@ -93,7 +95,7 @@ const AddReviewModal = (props: ModalProps) => {
           <Button variant="outlined" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="contained" color="primary" onClick={submitForm}>
+          <Button disabled={loading} variant="contained" color="primary" onClick={submitForm}>
             Submit
           </Button>
         </DialogActions>

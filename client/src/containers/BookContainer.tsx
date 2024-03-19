@@ -37,7 +37,7 @@ export default function BookContainer() {
                 </Typography> :
                     <Grid2 container spacing={4}  >
                         {books.map((item) => <Grid2 xs={12} lg={6} >
-                            <BookCard data={{ ...item, image: "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781847398819/random-9781847398819_hr.jpg" }} />
+                            <BookCard key={item.bookId} data={item} />
                         </Grid2>)}
                     </Grid2>}
 

@@ -30,7 +30,7 @@ export default function ReviewContainer({ reviewKey }: { reviewKey: number }) {
     }, [reviewKey])
     return (
         <Container sx={{ py: 2 }} maxWidth="xl">
-            <Typography variant="h5" color="textSecondary">
+            <Typography textAlign={"center"} variant="h6" color="textSecondary">
                 See what others are saying about this book
             </Typography>
             {loading ? <Spinner /> : <>
@@ -39,7 +39,7 @@ export default function ReviewContainer({ reviewKey }: { reviewKey: number }) {
                 </Typography> :
                     <Grid2 container spacing={4} >
                         {reviews.map((item) => <Grid2 xs={12} >
-                            <ReviewItem review={item} />
+                            <ReviewItem key={item.reviewId} review={item} />
                         </Grid2>)}
                     </Grid2>}
             </>}
