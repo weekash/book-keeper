@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { addReviewForBook, updateReviewForBook } from '../services/review';
 import { useStore } from '../context/Context';
 import { useParams } from 'react-router-dom';
-import { BookDetailsType, Review } from '../interface/base.type';
+import {  Review } from '../interface/base.type';
 
 interface ModalProps {
   open: boolean;
@@ -28,7 +28,7 @@ const AddReviewModal = (props: ModalProps) => {
       return
     }
     setLoading(true)
-    const { data, success, error } = await addReviewForBook(bookId, rating, review)
+    const {success, error } = await addReviewForBook(bookId, rating, review)
     if (success) {
       addAlert('Added review successfully', 'success')
       setReviewKey((val) => val + 1)
